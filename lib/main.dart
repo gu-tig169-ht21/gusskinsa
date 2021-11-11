@@ -15,8 +15,20 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(
-        title: 'TIG169 TODO',
+        title: 'TIG169 TOdDO',
       ),
+    );
+  }
+}
+
+class myAppBar extends AppBar {
+  Widget build(BuildContext) {
+    return AppBar(
+      centerTitle: true,
+      title: Text('TIG169 TODO'),
+      actions: <Widget>[
+        IconButton(onPressed: () {}, icon: Icon(Icons.more_vert)),
+      ],
     );
   }
 }
@@ -41,7 +53,11 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(widget.title),
+        //title: Text(widget.title),
+        title: Text('TIG169 TODO'),
+        actions: <Widget>[
+          IconButton(onPressed: () {}, icon: Icon(Icons.more_vert)),
+        ],
       ),
       body: Center(
         child: ListView(
@@ -81,7 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(todo),
         trailing: IconButton(
           onPressed: () {},
-          icon: Icon(Icons.close),
+          icon: const Icon(Icons.close),
         ),
       ),
     );
@@ -97,11 +113,11 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         title: Text(
           todo,
-          style: TextStyle(decoration: TextDecoration.lineThrough),
+          style: const TextStyle(decoration: TextDecoration.lineThrough),
         ),
         trailing: IconButton(
           onPressed: () {},
-          icon: Icon(Icons.close),
+          icon: const Icon(Icons.close),
         ),
       ),
     );
@@ -111,14 +127,51 @@ class _MyHomePageState extends State<MyHomePage> {
 class SecondView extends StatelessWidget {
   Widget build(BuildContext) {
     return Scaffold(
-      appBar: AppBar(),
-      body: _taskTODO(),
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text('TIG169 TODO'),
+      ),
+      body: Center(
+        child: Column(
+          children: [
+            _addTask(),
+            Container(
+              height: 32,
+            ),
+            _addButton(),
+          ],
+        ),
+      ),
     );
   }
 
-  Widget _taskTODO() {
+  Widget _addTask() {
     return Container(
-      child: Text('this is todo :))))))'),
+      margin: EdgeInsets.only(top: 30, left: 20, right: 20),
+      decoration: BoxDecoration(border: Border.all(color: Colors.black)),
+      child: const Padding(
+        padding: EdgeInsets.only(left: 20),
+        child: TextField(
+          decoration: InputDecoration(
+            hintText: 'What are you going to do?',
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _addButton() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          child: Icon(Icons.add),
+        ),
+        Text(
+          'ADD',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+      ],
     );
   }
 }
