@@ -53,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        //title: Text(widget.title),
+        //backgroundColor: Colors.blue,
         title: Text('TIG169 TODO'),
         actions: <Widget>[
           IconButton(onPressed: () {}, icon: Icon(Icons.more_vert)),
@@ -88,6 +88,10 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _item(todo) {
+    /*
+    var items = ['Flutter', 'Diska', 'Städa', "Handla"];
+    var listItems = List.generate(20, (index) => '${items[index % 4]} $index');
+    */
     return Card(
       child: ListTile(
         leading: Checkbox(
@@ -147,7 +151,7 @@ class SecondView extends StatelessWidget {
 
   Widget _addTask() {
     return Container(
-      margin: EdgeInsets.only(top: 30, left: 20, right: 20),
+      margin: const EdgeInsets.only(top: 30, left: 20, right: 20),
       decoration: BoxDecoration(border: Border.all(color: Colors.black)),
       child: const Padding(
         padding: EdgeInsets.only(left: 20),
