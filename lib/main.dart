@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import './SecondView.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,7 +28,7 @@ class myAppBar extends AppBar {
   Widget build(BuildContext) {
     return AppBar(
       centerTitle: true,
-      title: Text('TIG169 TODO'),
+      title: const Text('TIG169 TODO'),
       actions: <Widget>[
         IconButton(onPressed: () {}, icon: Icon(Icons.more_vert)),
       ],
@@ -54,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         centerTitle: true,
         //backgroundColor: Colors.blue,
-        title: Text('TIG169 TODO'),
+        title: const Text('TIG169 TODO'),
         actions: <Widget>[
           IconButton(onPressed: () {}, icon: Icon(Icons.more_vert)),
         ],
@@ -62,15 +65,6 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: ListView(
           children: <Widget>[
-            _item('FlutterApp'),
-            _item('FlutterApp'),
-            _item('FlutterApp'),
-            _itemTrue('FlutterApp'),
-            _item('FlutterApp'),
-            _item('FlutterApp'),
-            _item('FlutterApp'),
-            _item('FlutterApp'),
-            _item('FlutterApp'),
             _item('FlutterApp'),
             _item('FlutterApp'),
             _item('FlutterApp'),
@@ -92,90 +86,26 @@ class _MyHomePageState extends State<MyHomePage> {
     var items = ['Flutter', 'Diska', 'Städa', "Handla"];
     var listItems = List.generate(20, (index) => '${items[index % 4]} $index');
     */
-    return Card(
-      child: ListTile(
-        leading: Checkbox(
-          value: false,
-          onChanged: (val) {},
-        ),
-        title: Text(todo),
-        trailing: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.close),
-        ),
-      ),
-    );
-  }
-
-  //Temporary
-  Widget _itemTrue(todo) {
-    return Card(
-      child: ListTile(
-        leading: Checkbox(
-          value: true,
-          onChanged: (val) {},
-        ),
-        title: Text(
-          todo,
-          style: const TextStyle(decoration: TextDecoration.lineThrough),
-        ),
-        trailing: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.close),
-        ),
-      ),
-    );
-  }
-}
-
-class SecondView extends StatelessWidget {
-  Widget build(BuildContext) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text('TIG169 TODO'),
-      ),
-      body: Center(
-        child: Column(
-          children: [
-            _addTask(),
-            Container(
-              height: 32,
-            ),
-            _addButton(),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _addTask() {
-    return Container(
-      margin: const EdgeInsets.only(top: 30, left: 20, right: 20),
-      decoration: BoxDecoration(border: Border.all(color: Colors.black)),
-      child: const Padding(
-        padding: EdgeInsets.only(left: 20),
-        child: TextField(
-          decoration: InputDecoration(
-            hintText: 'What are you going to do?',
+    bool ischecked = false;
+    return StatefulBuilder(
+        builder: (BuildContext context, StateSetter setState) {
+      return Card(
+        child: ListTile(
+          leading: Checkbox(
+            value: ischecked,
+            onChanged: (val) {
+              setState(() {
+                ischecked = val!;
+              });
+            },
+          ),
+          title: Text(todo),
+          trailing: IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.close),
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _addButton() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          child: Icon(Icons.add),
-        ),
-        Text(
-          'ADD',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-      ],
-    );
+      );
+    });
   }
 }
