@@ -16,7 +16,7 @@ class SecondView extends StatelessWidget {
             Container(
               height: 32,
             ),
-            _addButton(),
+            _addButton(context),
           ],
         ),
       ),
@@ -38,12 +38,14 @@ class SecondView extends StatelessWidget {
     );
   }
 
-  Widget _addButton() {
+  Widget _addButton(context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         TextButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
           child: Row(
             children: [
               Icon(Icons.add),
