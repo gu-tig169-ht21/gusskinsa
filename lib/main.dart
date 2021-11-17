@@ -45,12 +45,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-/*
-  void _incrementCounter() {
-    setState(() {});
-  }
-*/
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,8 +66,8 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
+        onPressed: () async {
+          var newItem = await Navigator.push(
               context, MaterialPageRoute(builder: (context) => SecondView()));
         },
         child: const Icon(Icons.add),
@@ -99,7 +93,11 @@ class _MyHomePageState extends State<MyHomePage> {
               });
             },
           ),
-          title: Text(todo),
+          title: Text(
+            todo,
+            style: TextStyle(
+                decoration: ischecked ? TextDecoration.lineThrough : null),
+          ),
           trailing: IconButton(
             onPressed: () {},
             icon: const Icon(Icons.close),
