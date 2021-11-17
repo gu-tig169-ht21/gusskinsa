@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 
 class SecondView extends StatelessWidget {
-  Widget build(BuildContext) {
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -42,16 +42,18 @@ class SecondView extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Container(
-          child: IconButton(
-            icon: Icon(Icons.add),
-            onPressed: () {},
+        TextButton(
+          onPressed: () {},
+          child: Row(
+            children: [
+              Icon(Icons.add),
+              Text(
+                'ADD',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ],
           ),
-        ),
-        const Text(
-          'ADD',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
+        )
       ],
     );
   }
