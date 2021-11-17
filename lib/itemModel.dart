@@ -13,4 +13,9 @@ class mystate extends ChangeNotifier {
     _itemlist.add(item);
     notifyListeners();
   }
+
+  void removeItem(item) {
+    _itemlist.remove(item);
+    notifyListeners();
+  }
 }
