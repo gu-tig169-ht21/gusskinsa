@@ -1,43 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import './SecondView.dart';
+import 'item_model.dart';
+import 'item_list_view.dart';
 
 void main() {
-  runApp(const MyApp());
+  var state = myState();
+  runApp(
+    ChangeNotifierProvider(create: (context) => state, child: MyApp()),
+  );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Steg1',
+      title: 'TIG169 TODO',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(
-        title: 'TIG169 TOdDO',
-      ),
-    );
-  }
-}
-
-class myAppBar extends AppBar {
-  Widget build(BuildContext) {
-    return AppBar(
-      centerTitle: true,
-      title: const Text('TIG169 TODO'),
-      actions: <Widget>[
-        IconButton(onPressed: () {}, icon: Icon(Icons.more_vert)),
-      ],
+      home: ItemListView(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
+
   final String title;
 
   @override
@@ -49,61 +38,18 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        //backgroundColor: Colors.blue,
-        title: const Text('TIG169 TODO'),
-        actions: <Widget>[
-          IconButton(onPressed: () {}, icon: Icon(Icons.more_vert)),
-        ],
+        title: Text(widget.title),
       ),
       body: Center(
-        child: ListView(
-          children: <Widget>[
-            _item('FlutterApp'),
-            _item('FlutterApp'),
-            _item('FlutterApp'),
-          ],
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          var newItem = await Navigator.push(
-              context, MaterialPageRoute(builder: (context) => SecondView()));
-        },
+        onPressed: () {},
         child: const Icon(Icons.add),
       ),
     );
-  }
-
-  Widget _item(todo) {
-    /*
-    var items = ['Flutter', 'Diska', 'Städa', "Handla"];
-    var listItems = List.generate(20, (index) => '${items[index % 4]} $index');
-    */
-    bool ischecked = false;
-    return StatefulBuilder(
-        builder: (BuildContext context, StateSetter setState) {
-      return Card(
-        child: ListTile(
-          leading: Checkbox(
-            value: ischecked,
-            onChanged: (val) {
-              setState(() {
-                ischecked = val!;
-              });
-            },
-          ),
-          title: Text(
-            todo,
-            style: TextStyle(
-                decoration: ischecked ? TextDecoration.lineThrough : null),
-          ),
-          trailing: IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.close),
-          ),
-        ),
-      );
-    });
   }
 }
