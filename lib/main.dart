@@ -6,6 +6,7 @@ import 'item_list_view.dart';
 
 void main() {
   var state = myState();
+  state.getList();
   runApp(
     ChangeNotifierProvider(create: (context) => state, child: MyApp()),
   );

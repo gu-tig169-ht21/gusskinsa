@@ -1,13 +1,34 @@
 import 'package:flutter/material.dart';
 
+import 'item_api.dart';
+
 class Task {
+  String ID;
   String event;
   bool done;
-  String value;
-  Task(this.event, {this.done = false, this.value = 'all'});
+  Task({
+    required this.ID,
+    required this.event,
+    this.done = false,
+  });
 
   void toggleCompleted(Task item) {
     done = !done;
+  }
+
+  static Map<String, dynamic> toJson(Task item) {
+    return {
+      'title': item.event,
+      'done': item.done,
+    };
+  }
+
+  static Task fromJson(Map<String, dynamic> json) {
+    return Task(
+      ID: json['id'],
+      event: json['title'],
+      done: json['done'],
+    );
   }
 }
 
@@ -18,18 +39,25 @@ class myState extends ChangeNotifier {
   List<Task> get list => _itemlist;
   String get filterBy => _filterBy;
 
-  void addItem(Task item) {
-    _itemlist.add(item);
+  Future getList() async {
+    List<Task> list = await Item_Api.itemList();
+    _itemlist = list;
     notifyListeners();
   }
 
-  void removeItem(Task item) {
-    _itemlist.remove(item);
+  void addItem(Task item) async {
+    _itemlist = await Item_Api.addTask(item);
     notifyListeners();
   }
 
-  void setStatus(Task item) {
+  void removeItem(Task item) async {
+    _itemlist = await Item_Api.deleteTask(item.ID);
+    notifyListeners();
+  }
+
+  void setStatus(Task item) async {
     item.toggleCompleted(item);
+    _itemlist = await Item_Api.updateTask(item.ID, item);
     notifyListeners();
   }
 
