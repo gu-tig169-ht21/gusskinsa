@@ -6,6 +6,7 @@ import 'item_list_view.dart';
 
 void main() {
   var state = myState();
+  state.getList();
   runApp(
     ChangeNotifierProvider(create: (context) => state, child: MyApp()),
   );
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'TIG169 TODO',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

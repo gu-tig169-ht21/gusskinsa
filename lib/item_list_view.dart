@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'item_list.dart';
 import 'item_list_edit.dart';
 import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
 
 import 'item_model.dart';
 
@@ -45,7 +46,7 @@ class ItemListView extends StatelessWidget {
             context,
             MaterialPageRoute(
               builder: (context) => ItemListEdit(
-                Task('Event'),
+                Task(event: 'Event', ID: ''),
               ),
             ),
           );

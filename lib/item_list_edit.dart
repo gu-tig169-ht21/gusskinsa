@@ -50,7 +50,7 @@ class item_list_edit_state extends State<ItemListEdit> {
             ),
             TextButton(
               onPressed: () {
-                Navigator.pop(context, Task(event));
+                Navigator.pop(context, Task(event: event, ID: ''));
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
