@@ -32,7 +32,7 @@ class Task {
   }
 }
 
-class myState extends ChangeNotifier {
+class MyState extends ChangeNotifier {
   List<Task> _itemlist = [];
   String _filterBy = 'all';
 
@@ -40,24 +40,24 @@ class myState extends ChangeNotifier {
   String get filterBy => _filterBy;
 
   Future getList() async {
-    List<Task> list = await Item_Api.itemList();
+    List<Task> list = await ItemApi.itemList();
     _itemlist = list;
     notifyListeners();
   }
 
   void addItem(Task item) async {
-    _itemlist = await Item_Api.addTask(item);
+    _itemlist = await ItemApi.addTask(item);
     notifyListeners();
   }
 
   void removeItem(Task item) async {
-    _itemlist = await Item_Api.deleteTask(item.ID);
+    _itemlist = await ItemApi.deleteTask(item.ID);
     notifyListeners();
   }
 
   void setStatus(Task item) async {
     item.toggleCompleted(item);
-    _itemlist = await Item_Api.updateTask(item.ID, item);
+    _itemlist = await ItemApi.updateTask(item.ID, item);
     notifyListeners();
   }
 

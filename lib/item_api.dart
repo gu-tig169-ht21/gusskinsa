@@ -6,7 +6,7 @@ import 'item_model.dart';
 const API_KEY = '7ee1fe2f-928f-407a-aa08-bc3c61d7aa03';
 const API_URL = 'https://todoapp-api-pyq5q.ondigitalocean.app';
 
-class Item_Api {
+class ItemApi {
   static Future<List<Task>> addTask(Task item) async {
     Map<String, dynamic> json = Task.toJson(item);
     var bodyString = jsonEncode(json);

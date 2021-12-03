@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'item_model.dart';
 
 void main() {
-  var state = myState();
+  var state = MyState();
   state.getList();
   runApp(
     ChangeNotifierProvider(create: (context) => state, child: MyApp()),

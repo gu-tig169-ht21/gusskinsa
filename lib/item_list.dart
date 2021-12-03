@@ -8,13 +8,14 @@ class ItemList extends StatelessWidget {
   final List<Task> list;
 
   ItemList(this.list);
+  @override
   Widget build(BuildContext context) {
     return ListView(
         children: list.map((Task task) => _taskItem(context, task)).toList());
   }
 
   Widget _taskItem(context, Task item) {
-    var state = Provider.of<myState>(context, listen: false);
+    var state = Provider.of<MyState>(context, listen: false);
     return Card(
       child: ListTile(
         leading: Checkbox(

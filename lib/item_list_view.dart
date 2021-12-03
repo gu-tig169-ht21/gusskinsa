@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'item_list.dart';
 import 'item_list_edit.dart';
 import 'package:provider/provider.dart';
-import 'package:http/http.dart' as http;
 
 import 'item_model.dart';
 
 class ItemListView extends StatelessWidget {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -15,7 +15,7 @@ class ItemListView extends StatelessWidget {
         actions: <Widget>[
           PopupMenuButton(
             onSelected: (value) {
-              Provider.of<myState>(context, listen: false)
+              Provider.of<MyState>(context, listen: false)
                   .setFilterBy(value.toString());
             },
             itemBuilder: (context) => [
@@ -35,7 +35,7 @@ class ItemListView extends StatelessWidget {
           ),
         ],
       ),
-      body: Consumer<myState>(
+      body: Consumer<MyState>(
         builder: (context, state, child) =>
             ItemList(_filterList(state.list, state.filterBy)),
       ),
@@ -51,7 +51,7 @@ class ItemListView extends StatelessWidget {
             ),
           );
           if (newItem != null) {
-            Provider.of<myState>(context, listen: false).addItem(newItem);
+            Provider.of<MyState>(context, listen: false).addItem(newItem);
           }
         },
       ),

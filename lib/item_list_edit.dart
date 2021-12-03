@@ -9,15 +9,15 @@ class ItemListEdit extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return item_list_edit_state(event);
+    return ItemListEditState(event);
   }
 }
 
-class item_list_edit_state extends State<ItemListEdit> {
+class ItemListEditState extends State<ItemListEdit> {
   String event = 'Event';
   TextEditingController textEditingController = TextEditingController();
 
-  item_list_edit_state(Task todo) {
+  ItemListEditState(Task todo) {
     this.event = todo.event;
 
     textEditingController.addListener(() {
@@ -27,6 +27,7 @@ class item_list_edit_state extends State<ItemListEdit> {
     });
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -44,7 +45,7 @@ class item_list_edit_state extends State<ItemListEdit> {
                 padding: const EdgeInsets.only(left: 20),
                 child: TextField(
                   controller: textEditingController,
-                  decoration: InputDecoration(hintText: 'Input Task'),
+                  decoration: const InputDecoration(hintText: 'Input Task'),
                 ),
               ),
             ),
